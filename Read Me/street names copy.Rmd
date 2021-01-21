@@ -1,0 +1,49 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+### Let's set up our script with the right packages and import our test data
+ 
+```{r}
+library('jsonlite')
+library('dplyr')
+```
+ 
+```{r}
+streetnames <- readxl::read_xls('updatedenglishwordscheck_combine.xls')
+```
+ 
+### Create a list with the contents of the column called Word in Street names
+
+```{r}
+checklang <- c(streetnames$Word)
+```
+
+So the code below constructs a URL by combining the elements in the list called checklang (which is made up of the column call First in the dataframe called streetnames) which the portions of the request to the API in 3 parts: 
+The front of the url, the list entry, and then the back of the URL which contains my API key. And then it prints the results from the json of where the language is detected.
+
+Lets check it's down that properly
+
+```{r}
+View(checklang)
+```
+
+
+### Run a loop of the list to check the language and store the results in a new vector
+
+```{r}
+resultslist = c()
+for (i in checklang){
+  url<- paste("https://ws.detectlanguage.com/0.2/detect?q=",i, sep="","&key=7d91a7890de78bafd8282949769a3c8e")
+  jsonexample <- fromJSON(url)
+   languagedetection <- jsonexample$data$detections$language
+   resultslist = c(resultslist, i, languagedetection)
+}
+```
+Now save the results list in a .CSV file
+
+```{r}
+write.csv(resultslist, file="testlanguagedetectiontwo.csv")
+```
+
+
