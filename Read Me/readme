@@ -1,1 +1,7 @@
-These folders are an adaptation of a HTML webpage built by Carmen Aguilar Garcia. The author is indebted to her for sharing her files on Github. Adaptations, particularly those made in error, are the authors own. 
+These folders are an adaptation of a HTML webpage built by Carmen Aguilar Garcia. The author is indebted to her for sharing her files on Github.
+Adaptations to the HTML and CSS, particularly those made in error, are the authors own.
+
+The data folder contains the raw .CSV file used to do the analysis, the key pivot tables as XLS and the results of the API analysis of words as a CSV.
+
+The working XLS file is too large to save to Github.
+
